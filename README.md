@@ -1,5 +1,7 @@
 # SwiftTinkoffNewsTestProject
 
+Tinkoff News iOS Swift Test Project with CoreData
+
 ## Swift iOS test-application "Tinkoff News"
 
 ## Task (ENG)
