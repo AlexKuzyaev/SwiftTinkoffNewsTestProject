@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="13771" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13772"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="NewsListTableViewCell" id="LwB-Ed-8hK" customClass="NewsListTableViewCell" customModule="TinkoffNewsApiTestProject" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="375" height="88"/>
+            <autoresizingMask key="autoresizingMask"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="LwB-Ed-8hK" id="29o-t3-0K8">
+                <rect key="frame" x="0.0" y="0.0" width="375" height="87.5"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cxw-fC-FjY">
+                        <rect key="frame" x="16" y="11" width="287" height="66"/>
+                        <fontDescription key="fontDescription" name=".AppleSystemUIFont" family=".AppleSystemUIFont" pointSize="18"/>
+                        <nil key="textColor"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="1000" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="PFO-Ie-fPy">
+                        <rect key="frame" x="319" y="35" width="40" height="18"/>
+                        <constraints>
+                            <constraint firstAttribute="width" constant="40" id="J2w-Ko-T5B"/>
+                        </constraints>
+                        <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                        <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                </subviews>
+                <constraints>
+                    <constraint firstItem="cxw-fC-FjY" firstAttribute="leading" secondItem="29o-t3-0K8" secondAttribute="leadingMargin" id="6yf-kP-Vyn"/>
+                    <constraint firstItem="PFO-Ie-fPy" firstAttribute="leading" secondItem="cxw-fC-FjY" secondAttribute="trailing" constant="16" id="FcT-fx-c0G"/>
+                    <constraint firstAttribute="bottomMargin" secondItem="cxw-fC-FjY" secondAttribute="bottom" id="hnz-sW-3BO"/>
+                    <constraint firstAttribute="trailingMargin" secondItem="PFO-Ie-fPy" secondAttribute="trailing" id="jlw-tY-JKx"/>
+                    <constraint firstItem="cxw-fC-FjY" firstAttribute="top" secondItem="29o-t3-0K8" secondAttribute="topMargin" id="vdW-7Y-mLO"/>
+                    <constraint firstItem="PFO-Ie-fPy" firstAttribute="centerY" secondItem="cxw-fC-FjY" secondAttribute="centerY" id="xFl-Wg-BqU"/>
+                </constraints>
+            </tableViewCellContentView>
+            <connections>
+                <outlet property="counterLabel" destination="PFO-Ie-fPy" id="cKe-EF-pep"/>
+                <outlet property="titleLabel" destination="cxw-fC-FjY" id="eeu-0f-twp"/>
+            </connections>
+            <point key="canvasLocation" x="-8.5" y="6"/>
+        </tableViewCell>
+    </objects>
+</document>
