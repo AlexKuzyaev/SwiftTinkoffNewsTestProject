@@ -1,4 +1,4 @@
-# swift-test-project-news-api
+# SwiftTinkoffNewsTestProject
 
 ## Swift iOS test-application "Tinkoff News"
 
