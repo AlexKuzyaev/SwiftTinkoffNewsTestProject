@@ -129,6 +129,7 @@
 		2020ED7A24826D63001A7CCD /* Constants */ = {
 			isa = PBXGroup;
 			children = (
+				4AE2923821051ABC00188C21 /* Endpoints.swift */,
 				2020ED7B24826D85001A7CCD /* Strings.swift */,
 				2020ED7D24826D8D001A7CCD /* Closures.swift */,
 				2020ED7F24826D93001A7CCD /* Enums.swift */,
@@ -182,7 +183,7 @@
 			children = (
 				2020ED7824826D3E001A7CCD /* Application */,
 				4A592EAF20FF515300495B56 /* Utils */,
-				4A592EAE20FF514F00495B56 /* Network */,
+				4A592EAE20FF514F00495B56 /* Services */,
 				4A592EB320FF518000495B56 /* Model */,
 				4A592EAD20FF514800495B56 /* Controllers */,
 				4A592EB020FF515A00495B56 /* Views */,
@@ -201,13 +202,12 @@
 			path = Controllers;
 			sourceTree = "<group>";
 		};
-		4A592EAE20FF514F00495B56 /* Network */ = {
+		4A592EAE20FF514F00495B56 /* Services */ = {
 			isa = PBXGroup;
 			children = (
-				4AE2923821051ABC00188C21 /* Endpoints.swift */,
 				4A592EBB2100AC3E00495B56 /* NewsService.swift */,
 			);
-			path = Network;
+			path = Services;
 			sourceTree = "<group>";
 		};
 		4A592EAF20FF515300495B56 /* Utils */ = {

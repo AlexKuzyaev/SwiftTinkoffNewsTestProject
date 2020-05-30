@@ -19,10 +19,6 @@ final class NewsService: NSObject {
         }
     }
 
-    // MARK: - Properties
-    
-    static let instance = NewsService()
-
     // MARK: - Public Methods
     
     func getNews(from: Int = 0, to: Int = 20, completion: @escaping ResultDictClosure) {
