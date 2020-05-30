@@ -11,13 +11,25 @@ import UIKit
 import CoreData
 
 class CoreDataStack: NSObject {
+
+    // MARK: - Constants
+
+    private enum Constants {
+        static let containerName = "TinkoffNewsApiTestProject"
+    }
+
+    // MARK: - Properties
     
     static let instance = CoreDataStack()
+
+    // MARK: - Initialization
+
     private override init() {}
     
     // MARK: - Core Data stack
+
     lazy var persistentContainer: NSPersistentContainer = {
-        let container = NSPersistentContainer(name: "TinkoffNewsApiTestProject")
+        let container = NSPersistentContainer(name: Constants.containerName)
         container.loadPersistentStores(completionHandler: { (storeDescription, error) in
             if let error = error as NSError? {
                 fatalError("Unresolved error \(error), \(error.userInfo)")

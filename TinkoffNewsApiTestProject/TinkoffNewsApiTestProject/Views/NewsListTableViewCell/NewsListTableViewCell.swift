@@ -8,10 +8,14 @@
 
 import UIKit
 
-class NewsListTableViewCell: UITableViewCell {
+final class NewsListTableViewCell: UITableViewCell {
+
+    // MARK: - IBOutlets
         
     @IBOutlet private weak var titleLabel: UILabel!
     @IBOutlet private weak var counterLabel: UILabel!
+
+    // MARK: - Public Methods
         
     func update(title: String, counter: String) {
         titleLabel.text = title.htmlToString

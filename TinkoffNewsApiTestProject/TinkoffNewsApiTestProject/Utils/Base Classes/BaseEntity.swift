@@ -10,32 +10,34 @@ import Foundation
 import CoreData
 
 class BaseEntity: NSManagedObject {
-    
-    class func primaryKey() -> String { return "id" }
-    
-    class var className: String {
-        return String(describing: self.self)
+
+    // MARK: - Constants
+
+    private enum Constants {
+        static let id = "id"
     }
-}
 
-//MARK: Contexts
+    // MARK: - Private Properties
 
-var mainContext: NSManagedObjectContext {
-    return CoreDataStack.instance.getContext()
-}
+    private static var mainContext: NSManagedObjectContext {
+        return CoreDataStack.instance.getContext()
+    }
 
-extension BaseEntity {
-    
+    // MARK: - Class Methods
+
+    class func primaryKey() -> String { return Constants.id }
+
     class func findById<T: BaseEntity>(id: String) -> T? {
         let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: className)
         fetchRequest.predicate = NSPredicate(format: "\(primaryKey()) = %@", id)
-        
-        if let first = try? mainContext.fetch(fetchRequest).first as? T {
-            return first
+
+        guard let first = try? mainContext.fetch(fetchRequest).first as? T else {
+            return nil
         }
-        
-        return nil
+
+        return first
     }
+
 }
 
 

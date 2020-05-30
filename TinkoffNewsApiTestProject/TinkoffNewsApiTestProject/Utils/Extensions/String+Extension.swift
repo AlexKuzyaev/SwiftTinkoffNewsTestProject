@@ -1,5 +1,5 @@
 //
-//  Extension+String.swift
+//  String+Extension.swift
 //  TinkoffNewsApiTestProject
 //
 //  Created by Александр Кузяев on 22.07.18.
@@ -9,6 +9,8 @@
 import Foundation
 
 extension String {
+
+    // MARK: - Public Properties
     
     var htmlToAttributedString: NSAttributedString? {
         guard let data = data(using: .utf8) else { return NSAttributedString() }

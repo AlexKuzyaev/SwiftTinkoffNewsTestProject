@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="16097" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="yCT-FR-26b">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16087"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--Tinkoff News -->
+        <scene sceneID="OCM-Np-4aq">
+            <objects>
+                <viewController storyboardIdentifier="NewsDetailViewController" title="Tinkoff News " id="yCT-FR-26b" customClass="NewsDetailViewController" customModule="TinkoffNewsApiTestProject" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="xXe-RX-CgA">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" showsHorizontalScrollIndicator="NO" contentInsetAdjustmentBehavior="scrollableAxes" editable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="aR8-pC-M8c">
+                                <rect key="frame" x="0.0" y="44" width="414" height="818"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                                <dataDetectorType key="dataDetectorTypes" phoneNumber="YES" link="YES" address="YES" calendarEvent="YES"/>
+                            </textView>
+                            <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" animating="YES" style="whiteLarge" translatesAutoresizingMaskIntoConstraints="NO" id="hMu-oy-BtE">
+                                <rect key="frame" x="177" y="423" width="60" height="60"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="60" id="8Dn-M1-0q8"/>
+                                    <constraint firstAttribute="width" constant="60" id="tpO-0Z-5VQ"/>
+                                </constraints>
+                                <color key="color" red="0.1333333333" green="0.098039215690000001" blue="0.0039215686269999999" alpha="1" colorSpace="calibratedRGB"/>
+                            </activityIndicatorView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="DyM-75-uow" firstAttribute="bottom" secondItem="aR8-pC-M8c" secondAttribute="bottom" id="Y4s-d9-JDR"/>
+                            <constraint firstItem="hMu-oy-BtE" firstAttribute="centerX" secondItem="aR8-pC-M8c" secondAttribute="centerX" id="Y62-il-Ksh"/>
+                            <constraint firstItem="DyM-75-uow" firstAttribute="trailing" secondItem="aR8-pC-M8c" secondAttribute="trailing" id="h58-Vf-zsm"/>
+                            <constraint firstItem="hMu-oy-BtE" firstAttribute="centerY" secondItem="aR8-pC-M8c" secondAttribute="centerY" id="hQB-OM-QQW"/>
+                            <constraint firstItem="aR8-pC-M8c" firstAttribute="leading" secondItem="DyM-75-uow" secondAttribute="leading" id="mT5-uE-59A"/>
+                            <constraint firstItem="aR8-pC-M8c" firstAttribute="top" secondItem="DyM-75-uow" secondAttribute="top" id="x3g-Qg-JdS"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="DyM-75-uow"/>
+                    </view>
+                    <connections>
+                        <outlet property="activityIndicator" destination="hMu-oy-BtE" id="3b1-Vc-bAa"/>
+                        <outlet property="textView" destination="aR8-pC-M8c" id="1Mo-Yg-mIe"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="diM-lL-KPK" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="886" y="304"/>
+        </scene>
+    </scenes>
+</document>

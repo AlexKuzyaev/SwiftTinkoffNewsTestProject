@@ -8,51 +8,24 @@
 
 import UIKit
 
-class NewsListViewController: UITableViewController {
+final class NewsListViewController: UITableViewController {
+
+    // MARK: - Properties
     
-    let presenter = NewsListViewControllerPresenter()
-    
-    fileprivate let cellReuseIdentifier = "NewsListTableViewCell"
-    
-    override func awakeFromNib() {
-        super.awakeFromNib()
-        self.presenter.delegate = self
-    }
+    var output: NewsListViewOutput?
+
+    // MARK: - UIViewController
 
     override func viewDidLoad() {
         super.viewDidLoad()
         setupTableView()
         setupRefreshControl()
     }
-    
-    private func setupTableView() {
-        tableView.register(UINib(nibName: Nib.newsListTableViewCell, bundle: nil), forCellReuseIdentifier: cellReuseIdentifier)
-        tableView.estimatedRowHeight = 100
-        tableView.rowHeight = UITableViewAutomaticDimension
-    }
-    
-    private func setupRefreshControl() {
-        if let refresh = tableView.refreshControl {
-            refresh.addTarget(self, action: #selector(handleRefresh), for: .valueChanged)
-        }
-    }
-    
-    @objc private func handleRefresh() {
-        presenter.didRefresh()
-    }
-    
-    func showNewsDetail(newsId: String) {
-        let presenter = NewsDetailViewControllerPresenter(newsId: newsId)
-        navigationController?.pushViewController(presenter.viewController, animated: true)
-    }
-    
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
-    }
 }
 
-extension NewsListViewController: NewsListViewControllerPresenterDelegate {
+// MARK: - NewsListViewInput
+
+extension NewsListViewController: NewsListViewInput {
     
     func updateData() {
         stopRefresh()
@@ -61,46 +34,83 @@ extension NewsListViewController: NewsListViewControllerPresenterDelegate {
     
     func showError(error: String) {
         stopRefresh()
-        showAlert(alertTitle: "Error", message: error)
+        showAlert(alertTitle: Strings.error, message: error)
     }
-    
-    private func stopRefresh() {
-        if let refreshControl = tableView.refreshControl,
-            refreshControl.isRefreshing {
-            refreshControl.endRefreshing()
-        }
+
+    func showNewsDetail(newsId: String) {
+        let vc = NewsDetailModuleConfigurator().configure(newsId: newsId)
+        navigationController?.pushViewController(vc, animated: true)
     }
 }
+
+// MARK: - UITableView methods
 
 extension NewsListViewController {
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-    
-        let cell = tableView.dequeueReusableCell(withIdentifier: cellReuseIdentifier, for: indexPath) as! NewsListTableViewCell
-        let news = presenter.getNews(index: indexPath.row)
-        if let title = news.title {
-            cell.update(title: title, counter: "\(news.counter)")
+
+        guard
+            let cell = tableView.dequeueReusableCell(withIdentifier: NewsListTableViewCell.className,
+                                                     for: indexPath) as? NewsListTableViewCell
+        else {
+            return UITableViewCell()
+        }
+
+        if  let news = output?.getNews(index: indexPath.row),
+            let title = news.title  {
+            cell.update(title: title, counter: news.counter.toString())
         }
         return cell
     }
     
     override func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
-        if indexPath.row == presenter.getDatasourceCount() - 1 {
-            presenter.loadMoreNews()
+        guard
+            let datasourceCount = output?.getDatasourceCount(),
+            indexPath.row == datasourceCount - 1
+        else {
+            return
         }
+        output?.loadMoreNews()
     }
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
-        presenter.didSelectRowAtIndex(index: indexPath.row)
+        output?.didSelectRowAtIndex(index: indexPath.row)
     }
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return presenter.getDatasourceCount()
+        return output?.getDatasourceCount() ?? 0
     }
     
     override func numberOfSections(in tableView: UITableView) -> Int {
         return 1
+    }
+}
+
+// MARK: - Private Methods
+
+private extension NewsListViewController {
+
+    func setupTableView() {
+        tableView.register(UINib(nibName: NewsListTableViewCell.className, bundle: nil),        forCellReuseIdentifier: NewsListTableViewCell.className)
+        tableView.estimatedRowHeight = 100
+        tableView.rowHeight = UITableView.automaticDimension
+    }
+
+    func setupRefreshControl() {
+        guard let refresh = tableView.refreshControl else {
+            return
+        }
+        refresh.addTarget(self, action: #selector(handleRefresh), for: .valueChanged)
+    }
+
+    @objc
+    func handleRefresh() {
+        output?.didRefresh()
+    }
+
+    func stopRefresh() {
+        tableView.refreshControl?.endRefreshing()
     }
 }
 

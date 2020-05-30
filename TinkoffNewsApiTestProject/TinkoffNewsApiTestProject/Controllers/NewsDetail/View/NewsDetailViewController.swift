@@ -8,36 +8,32 @@
 
 import UIKit
 
-class NewsDetailViewController: UIViewController, ActivityIndicatorProtocol {
+final class NewsDetailViewController: UIViewController {
+
+    // MARK: - IBOutlets
+
+    var output: NewsDetailViewOutput?
+
+    // MARK: - IBOutlets
     
-    weak var presenter: NewsDetailViewControllerPresenter!
-    
-    @IBOutlet fileprivate weak var textView: UITextView!
+    @IBOutlet private weak var textView: UITextView!
     @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
-    
-    class func instance() -> NewsDetailViewController {
-        return Storyboard.main.instantiateViewController(withIdentifier: "NewsDetailViewController") as! NewsDetailViewController
-    }
-    
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
-    }
-    
+
+    // MARK: - UIViewController
+
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
         textView.setContentOffset(CGPoint.zero, animated: false)
     }
 }
 
-extension NewsDetailViewController {
+// MARK: - Public Methods
+
+extension NewsDetailViewController: NewsDetailViewInput {
 
     func updateData(attributedString: NSAttributedString) {
         textView.attributedText = attributedString
     }
-    
-    func showError(error: String) {
-        showAlert(alertTitle: "Error", message: error)
-    }
 }
+
 
